@@ -1,0 +1,58 @@
+<script setup lang="ts">
+</script>
+
+<template>
+    <header>
+        <UiButton
+            type="nuxt-link"
+            to="/"
+            size="sm"
+            theme="primary"
+        >
+            Главная
+        </UiButton>
+        <UiButton
+            type="nuxt-link"
+            to="/about"
+            size="sm"
+            theme="primary"
+        >
+            about
+        </UiButton>
+        <UiButton
+            type="nuxt-link"
+            to="/auth/login"
+            size="sm"
+            theme="primary"
+        >
+            login
+        </UiButton>
+        <UiButton
+            type="nuxt-link"
+            to="/auth/register"
+            size="sm"
+            theme="primary"
+        >
+            login
+        </UiButton>
+        <UiButton
+            type="nuxt-link"
+            to="/ui-kit"
+            size="sm"
+            theme="primary"
+        >
+            ui-kit
+        </UiButton>
+        <UiButton
+            type="nuxt-link"
+            to="/private"
+            size="sm"
+            theme="primary"
+        >
+            private
+        </UiButton>
+    </header>
+</template>
+
+<style scoped lang="scss">
+</style>

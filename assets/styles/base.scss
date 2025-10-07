@@ -1,0 +1,35 @@
+:root {
+    --font: 'Montserrat';
+    --cl-black: #000;
+    --cl-nero: #222;
+    --cl-white: #fff;
+    --cl-mountain-meadow: #1DBF73;
+    --cl-white-ice: #D7FFEC;
+    --cl-coral-red: #FF4343;
+    --cl-sandy-brown: #FBA457;
+    --cl-kimberly: #656084;
+    --cl-wistful: #B0AAD0;
+    --cl-shuttle-grey: #5C5F62;
+    --cl-slate-blue:#5E4EDB;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+}
+
+#__nuxt {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+}
