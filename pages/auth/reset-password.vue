@@ -1,0 +1,1 @@
+<template>Новый пароль</template>

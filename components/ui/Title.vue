@@ -1,6 +1,7 @@
 <script setup lang="ts">
     const props = defineProps<{
-        type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        tag: 'h1' | 'h2' | 'h3';
+        type?: 'h1' | 'h2' | 'h3';
         mb?: string;
         align?: 'left' | 'center' | 'right';
     }>();
@@ -8,13 +9,13 @@
 
 <template>
     <component
-        :is="props.type"
+        :is="props.tag"
         :class="[
             'title',
-            props.type && `title--${props.type}`,
+            `title--${props.type ? props.type : props.tag}`,
             props.align && `title--${props.align}`,
-            props.mb && `title--mb-${props.mb}`
         ]"
+        :style="props.mb ? { marginBottom: props.mb+'px' } : undefined"
     >
         <slot />
     </component>
@@ -51,5 +52,18 @@
         &--left   { text-align: left; }
         &--center { text-align: center; }
         &--right  { text-align: right; }
+
+        &--auth {
+            font-size: 30px;
+            line-height: 100%;
+            color: var(--cl-black-russian);
+        }
+
+        &__suptitle {
+            font-size: 16px;
+            line-height: 100%;
+            color: var(--cl-licorice);
+            margin-bottom: 1px;
+        }
     }
 </style>

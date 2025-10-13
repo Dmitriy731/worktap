@@ -3,54 +3,97 @@
 
 <template>
     <div>
-        <UiTitle type="h1" style="color: red">UI Kit</UiTitle>
+        <UiTitle tag="h1" style="color: red">UI Kit</UiTitle>
 
-        <UiTitle type="h2" style="color: red">Titles</UiTitle>
-            <UiTitle type="h1">Покупайте фриланс-услуги в <span>два клика</span></UiTitle>
-            <UiTitle type="h1">Мой <span class="orange">кошелек</span></UiTitle>
-            <UiTitle type="h2">Title h2</UiTitle>
-            <UiTitle type="h3" align="center" mb="24">Title h3 center</UiTitle>
+        <UiTitle tag="h2" style="color: red">Titles</UiTitle>
+            <UiTitle tag="h1" type="h1">Покупайте фриланс-услуги в <span>два клика</span></UiTitle>
+            <UiTitle tag="h1" type="h1">Мой <span class="orange">кошелек</span></UiTitle>
+            <UiTitle tag="h2" type="h2">Title h2</UiTitle>
+            <UiTitle tag="h3" type="h3" align="center" mb="24">Title h3 center</UiTitle>
 
-        <UiTitle type="h2" style="color: red">Icons</UiTitle>
+        <br>
+        <br>
+        <UiTitle tag="h2" style="color: red">Icons</UiTitle>
             <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
                 <Icon name="icon:settings" class="test-icon" />
             </div>
 
-        <UiTitle type="h2" style="color: red">Buttons</UiTitle>
+        <br>
+        <br>
+        <UiTitle tag="h2" style="color: red">Buttons</UiTitle>
             <UiButton
                 type="a"
                 href="https://nuxt.com/"
-                size="sm"
+            >
+                link
+            </UiButton>
+
+            <br>
+            <UiButton
+                type="a"
+                href="https://nuxt.com/"
                 theme="primary"
             >
                 link
             </UiButton>
+
+            <br>
             <UiButton
+                type="a"
+                href="https://nuxt.com/"
+                theme="secondary"
+            >
+                link
+            </UiButton>
+
+            <br>
+            <UiButton
+                type="a"
+                href="https://nuxt.com/"
+                theme="tertiary"
+            >
+                link
+            </UiButton>
+            <UiButton
+                to="/about"
                 type="nuxt-link"
-                size="sm"
-                theme="primary"
+                theme="tertiary"
             >
                 nuxt-link
             </UiButton>
             <UiButton
                 type="button"
-                size="sm"
-                theme="primary"
+                theme="tertiary"
+                @click="() => console.log('click')"
             >
                 Button
             </UiButton>
             <UiButton
                 type="div"
-                size="sm"
-                theme="primary"
+                theme="tertiary"
             >
                 div
             </UiButton>
-        <UiTitle type="h2" style="color: red">Forms</UiTitle>
-        <UiTitle type="h2" style="color: red">Tables</UiTitle>
-        <UiTitle type="h2" style="color: red">Sliders</UiTitle>
-        <UiTitle type="h2" style="color: red">Pagination</UiTitle>
-        <UiTitle type="h2" style="color: red">Cards</UiTitle>
+
+        <br>
+        <br>
+        <UiTitle tag="h2" style="color: red">Forms</UiTitle>
+
+        <br>
+        <br>
+        <UiTitle tag="h2" style="color: red">Tables</UiTitle>
+
+        <br>
+        <br>
+        <UiTitle tag="h2" style="color: red">Sliders</UiTitle>
+
+        <br>
+        <br>
+        <UiTitle tag="h2" style="color: red">Pagination</UiTitle>
+
+        <br>
+        <br>
+        <UiTitle tag="h2" style="color: red">Cards</UiTitle>
 
     </div>
 </template>

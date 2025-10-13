@@ -13,7 +13,7 @@ export default defineNuxtConfig({
       {
         name: 'Montserrat',
         provider: 'google',
-        weights: [400, 600, 700],
+        weights: [400, 500, 600, 700],
       },
     ],
   },
@@ -36,5 +36,8 @@ export default defineNuxtConfig({
         }
       }
     }
+  },
+  runtimeConfig: {
+    JWT_SECRET: process.env.JWT_SECRET,
   },
 })
