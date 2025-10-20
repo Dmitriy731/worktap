@@ -15,6 +15,10 @@
     const email = ref('');
     const password = ref('');
     const rememberMe = ref(false);
+
+    const loginWithYandex = () => {
+        window.location.href = '/api/auth/yandex'
+    }
 </script>
 
 <template>
@@ -58,6 +62,9 @@
         </div>
         <UiButton type="button" @click="login(email, password, rememberMe)">
             Войти
+        </UiButton>
+        <UiButton type="button" @click="loginWithYandex">
+            Войти через yandex
         </UiButton>
     </div>
 </template>

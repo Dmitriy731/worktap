@@ -39,5 +39,11 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     JWT_SECRET: process.env.JWT_SECRET,
+    YANDEX_CLIENT_ID: process.env.YANDEX_CLIENT_ID,
+    YANDEX_CLIENT_SECRET: process.env.YANDEX_CLIENT_SECRET,
+    YANDEX_REDIRECT_URI: process.env.YANDEX_REDIRECT_URI,
+  },
+  routeRules: {
+    '/api/**': { ssr: true },
   },
 })

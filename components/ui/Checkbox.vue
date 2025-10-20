@@ -1,15 +1,10 @@
 <script setup lang="ts">
-interface Props {
-    checked?: boolean
-    disabled?: boolean
-    name: string
-    value?: string
-    type?: string
-}
+import type { CheckboxProps } from '~/interface/ui/checkbox.interface'
 
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<CheckboxProps>(), {
     checked: false,
     disabled: false,
+    type: 'checkbox',
 })
 
 const modelValue = defineModel()

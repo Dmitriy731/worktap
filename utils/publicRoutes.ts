@@ -10,4 +10,5 @@ export const publicRoutes = [
   '/create-work',
   '/create-order',
   '/ui-kit',
+  '/api/auth/yandex/callback',
 ]

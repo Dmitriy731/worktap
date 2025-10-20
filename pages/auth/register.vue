@@ -1,9 +1,4 @@
 <script setup lang="ts">
-    // if (form.password !== form.repeatPassword) {
-    //     error.value = 'Пароли не совпадают'
-    //     return
-    // }
-
     async function register() {
         const { data, error } = await useFetch('/api/register', {
             method: 'POST',
@@ -23,7 +18,7 @@
 </script>
 
 <template>
-        <UiButton type="button" @click="register()">
-            Register
-        </UiButton>
+    <UiButton type="button" @click="register()">
+        Register
+    </UiButton>
 </template>
