@@ -48,6 +48,8 @@ export default defineEventHandler(async (event) => {
       lastName: user.lastName,
       email: user.email,
       phone: user.phone,
+      role: user.role,
+      photo: user.photo,
     },
   };
 });

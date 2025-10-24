@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CheckboxProps } from '~/interface/ui/checkbox.interface'
+import type { CheckboxProps } from '~/types/interface/ui/checkbox.interface'
 
 withDefaults(defineProps<CheckboxProps>(), {
     checked: false,

@@ -16,6 +16,11 @@
     const password = ref('');
     const rememberMe = ref(false);
 
+    const authLogin = async () => {
+        login(email.value, password.value, rememberMe.value);
+        navigateTo('/');
+    }
+
     const loginWithYandex = () => {
         window.location.href = '/api/auth/yandex'
     }
@@ -60,7 +65,7 @@
                 Забыли пароль?
             </UiButton>
         </div>
-        <UiButton type="button" @click="login(email, password, rememberMe)">
+        <UiButton type="button" @click="authLogin">
             Войти
         </UiButton>
         <UiButton type="button" @click="loginWithYandex">

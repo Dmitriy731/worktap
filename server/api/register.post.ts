@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const { firstName, lastName, email, phone, password } = body;
+  const { firstName, lastName, email, phone, password, role } = body;
 
   // Проверка полей
   if (!firstName || !lastName || !email || !phone || !password) {
@@ -33,6 +33,7 @@ export default defineEventHandler(async (event) => {
       email,
       phone,
       password: hashedPassword,
+      role,
     },
   });
 
@@ -43,6 +44,7 @@ export default defineEventHandler(async (event) => {
       lastName: user.lastName,
       email: user.email,
       phone: user.phone,
+      role: user.role,
     },
   };
 });

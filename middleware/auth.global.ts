@@ -1,6 +1,6 @@
 import { getCookie } from 'h3'
 import { useAuthStore } from '~/stores/auth'
-import type { IUser } from '~/interface/user.interface'
+import type { IUser } from '~/types/interface/user.interface'
 
 export default defineNuxtRouteMiddleware(async (to) => {
   if (to.path.startsWith('/api/')) return

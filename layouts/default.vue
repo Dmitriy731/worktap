@@ -13,13 +13,32 @@
       path: '/competitions'
     },
     {
-      name: 'Создать ворк',
-      path: '/create-work'
-    },
-    {
       name: 'Создать заказ',
       path: '/create-order'
     }
+  ]
+
+  const navProfile = [
+    {
+      name: 'Мой кабинет',
+      path: '/'
+    },
+    {
+      name: 'Мои заказы',
+      path: '/'
+    },
+    {
+      name: 'История',
+      path: '/'
+    },
+    {
+      name: 'Мой кошелек',
+      path: '/'
+    },
+    {
+      name: 'Мои настройки',
+      path: '/'
+    },
   ]
 
   const footer = {
@@ -126,7 +145,7 @@
 
 <template>
     <div class="app">
-        <LayoutsHeader :nav="navHeader" />
+        <LayoutsHeader :nav="navHeader" :nav-profile="navProfile" />
         <slot />
         <LayoutsFooter :footer="footer" />
     </div>

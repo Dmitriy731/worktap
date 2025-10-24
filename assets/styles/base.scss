@@ -16,6 +16,7 @@
     --cl-wistful: #B0AAD0;
     --cl-shuttle-grey: #5C5F62;
     --cl-slate-blue:#5E4EDB;
+    --cl-lavender: #EBE8FF;
 }
 
 *, *::before, *::after {
@@ -37,4 +38,14 @@ body {
     flex-direction: column;
 
     height: 100%;
+}
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
 }

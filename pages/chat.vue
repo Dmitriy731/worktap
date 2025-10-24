@@ -1,3 +1,3 @@
 <template>
-    <div>Профиль</div>
+    <div>chat</div>
 </template>

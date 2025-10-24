@@ -22,6 +22,8 @@ export default defineEventHandler(async (event) => {
         firstName: true,
         lastName: true,
         phone: true,
+        role: true,
+        photo: true,
       },
     })
 

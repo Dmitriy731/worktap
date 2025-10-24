@@ -3,7 +3,7 @@
 
     const props = defineProps<{
         type?: 'a' | 'nuxt-link' | 'button' | 'div';
-        theme?: 'primary' | 'secondary' | 'tertiary';
+        theme?: 'primary' | 'secondary' | 'tertiary' | 'profile';
     }>();
 </script>
 
@@ -132,6 +132,16 @@
                     opacity: 1;
                 }
             }
+        }
+
+        &--profile {
+            font-size: 16px;
+            line-height: 20px;
+            width: fit-content;
+        }
+
+        &.red {
+            color: var(--cl-coral-red);
         }
     }
 </style>

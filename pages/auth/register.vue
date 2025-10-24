@@ -1,4 +1,6 @@
 <script setup lang="ts">
+    import { UserRole } from '~/types/enum/user-role.enum'
+
     async function register() {
         const { data, error } = await useFetch('/api/register', {
             method: 'POST',
@@ -8,6 +10,7 @@
                 email: 'admin@example.com',
                 phone: '+7 (000) 000-00-00',
                 password: '123456',
+                role: UserRole.Client
             }
         });
 

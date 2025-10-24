@@ -2,7 +2,6 @@ import { prisma } from '~/server/prisma'
 import jwt from 'jsonwebtoken'
 import { setCookie, sendRedirect, createError, getQuery } from 'h3'
 
-// Храним обработанные коды (в продакшене используйте Redis)
 const processedCodes = new Set()
 
 export default defineEventHandler(async (event) => {
@@ -10,25 +9,21 @@ export default defineEventHandler(async (event) => {
   const code = query.code as string
   const state = (query.state as string) || '/'
 
+  if (!code) {
+    throw createError({ statusCode: 400, statusMessage: 'Code not found' })
+  }
+
   // 🔒 Проверяем, не обрабатывался ли уже этот код
   if (processedCodes.has(code)) {
     return sendRedirect(event, state)
   }
-
-  // Добавляем код в обработанные
   processedCodes.add(code)
-
-  // Очищаем старые коды (опционально)
   if (processedCodes.size > 100) {
     const firstCode = processedCodes.values().next().value
     processedCodes.delete(firstCode)
   }
 
   const config = useRuntimeConfig()
-
-  if (!code) {
-    throw createError({ statusCode: 400, statusMessage: 'Code not found' })
-  }
 
   // 1️⃣ Получаем access_token
   let tokenResponse
@@ -44,13 +39,11 @@ export default defineEventHandler(async (event) => {
         redirect_uri: config.YANDEX_REDIRECT_URI,
       }),
     }) as { access_token: string }
-
-  } catch (err) {
-    // Если ошибка 400, возможно код уже использован - всё равно редиректим
-    if (err.status === 400) {
+  } catch (err: any) {
+    // Если код уже использован или ошибка 400 — просто редиректим
+    if (err?.status === 400) {
       return sendRedirect(event, state)
     }
-    
     throw createError({ statusCode: 400, statusMessage: 'Failed to fetch Yandex token' })
   }
 
@@ -63,7 +56,6 @@ export default defineEventHandler(async (event) => {
   const userData = await $fetch('https://login.yandex.ru/info', {
     headers: { Authorization: `OAuth ${accessToken}` },
   }) as { default_email: string; first_name?: string; last_name?: string }
-
 
   if (!userData.default_email) {
     throw createError({ statusCode: 400, statusMessage: 'No email from Yandex' })
@@ -86,7 +78,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // 4️⃣ Создаём JWT токен
+  // 4️⃣ Создаём JWT
   const token = jwt.sign({ userId: user.id }, config.JWT_SECRET, { expiresIn: '7d' })
 
   // 5️⃣ Устанавливаем cookie
@@ -95,8 +87,9 @@ export default defineEventHandler(async (event) => {
     secure: false, // true в продакшене
     sameSite: 'lax',
     path: '/',
-    maxAge: 60 * 60 * 24 * 7, // 7 дней
+    maxAge: 60 * 60 * 24 * 7,
   })
 
+  // 🎯 Единственный ответ — редирект
   return sendRedirect(event, state)
 })

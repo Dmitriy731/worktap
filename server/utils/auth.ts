@@ -18,6 +18,7 @@ export async function getCurrentUser(event: any) {
         lastName: true,
         email: true,
         phone: true,
+        role: true,
       },
     });
     return user;

@@ -1,14 +1,15 @@
 // stores/auth.ts
 import { defineStore } from 'pinia'
 import { publicRoutes } from '~/utils/publicRoutes'
+import type { IUser } from '~/types/interface/user.interface'
 
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref<any | null>(null)
+  const user = ref<IUser | null>(null)
   const works = ref<any[]>([])
   const orders = ref<any[]>([])
 
   const login = async (email: string, password: string, rememberMe: boolean) => {
-    const res = await $fetch<{ user: any }>('/api/login', {
+    const res = await $fetch<{ user: IUser | null }>('/api/login', {
       method: 'POST',
       body: { email, password, rememberMe },
       credentials: 'include',
@@ -26,7 +27,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const fetchUser = async () => {
     try {
-      const res = await $fetch<{ user: any | null }>('/api/auth/me', {
+      const res = await $fetch<{ user: IUser | null }>('/api/me', {
         credentials: 'include',
         onResponseError() { return { user: null } },
       })
@@ -34,6 +35,23 @@ export const useAuthStore = defineStore('auth', () => {
     } catch {
       user.value = null
     }
+    return user.value
+  }
+
+  const updateRole = async (role: string) => {
+    if (!user.value) return null
+
+    const res = await $fetch('/api/user/role', {
+      method: 'PUT',
+      body: { role },
+      credentials: 'include',
+      onResponseError() { return null },
+    })
+
+    console.log(res);
+
+    user.value = res.user
+
     return user.value
   }
 
@@ -51,5 +69,5 @@ export const useAuthStore = defineStore('auth', () => {
 
   const isPublic = (path: string) => publicRoutes.includes(path)
 
-  return { user, works, orders, login, logout, fetchUser, fetchWorks, fetchOrders, isPublic }
+  return { user, works, orders, login, logout, fetchUser, fetchWorks, fetchOrders, isPublic, updateRole }
 })
