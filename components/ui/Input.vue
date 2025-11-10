@@ -3,7 +3,7 @@
 
   const props = defineProps<{
     mb?: string,
-    variant: 'gray',
+    variant: 'gray' | 'search',
     label?: string,
     id?: string,
   }>();
@@ -54,6 +54,31 @@
 
         &::placeholder {
           color: #B0AAD0;
+        }
+      }
+    }
+
+    .input-search {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+
+      &__field {
+        font-family: 'Montserrat';
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 100%;
+        padding: 20px;
+        background-color: var(--cl-ghost-white-second);
+        border-radius: 50px;
+        border: none;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: var(--cl-kimberly);
         }
       }
     }

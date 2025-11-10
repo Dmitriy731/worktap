@@ -1,6 +1,7 @@
 import { prisma } from '~/server/prisma'
 import jwt from 'jsonwebtoken'
 import { setCookie, sendRedirect, createError, getQuery } from 'h3'
+import { UserRole } from '~/types/enum/user-role.enum'
 
 const processedCodes = new Set()
 
@@ -74,6 +75,7 @@ export default defineEventHandler(async (event) => {
         lastName: userData.last_name || '',
         password: '',
         phone: '',
+        role: UserRole.Client
       },
     })
   }

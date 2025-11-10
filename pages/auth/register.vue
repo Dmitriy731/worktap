@@ -7,7 +7,7 @@
             body: {
                 firstName: 'Admin',
                 lastName: 'Admin',
-                email: 'admin@example.com',
+                email: 'admin3@example.com',
                 phone: '+7 (000) 000-00-00',
                 password: '123456',
                 role: UserRole.Client

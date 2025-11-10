@@ -16,16 +16,17 @@ enum Role {
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   firstName String
   lastName  String
-  email     String @unique
+  email     String  @unique
   phone     String
   password  String
   role      Role
   photo     String?
 
-  todos Todo[]
+  rooms     Room[]   @relation("RoomUsers")
+  messages Message[]
 }
 
 model Todo {
@@ -34,6 +35,25 @@ model Todo {
   completed Boolean  @default(false)
   userId    Int
   createdAt DateTime @default(now())
+}
 
-  user User @relation(fields: [userId], references: [id])
+model Room {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  users    User[]    @relation("RoomUsers")
+  messages Message[]
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  text       String
+  createdAt  DateTime @default(now())
+
+  roomId     Int
+  senderId   Int
+  chatId     Int?
+
+  room       Room     @relation(fields: [roomId], references: [id])
+  sender     User     @relation(fields: [senderId], references: [id])
 }
