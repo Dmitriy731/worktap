@@ -13,6 +13,10 @@ const messageText = ref('')
 onMounted(() => {
   if (!authStore.user) return
   chatsStore.getChats(authStore.user?.id)
+
+  if (chatsStore.chats.length) {
+      chatsStore.activeRoom(chatsStore.chats[0].id)
+    }
 })
 
 watch(
@@ -35,6 +39,23 @@ const sendMessage = async () => {
   chatsStore.sendMessage(messageText.value, authStore.user?.id)
   messageText.value = ''
 }
+
+const initChats = async () => {
+  if (!authStore.user) return
+
+  // 1️⃣ Получаем чаты
+  await chatsStore.getChats(authStore.user.id)
+
+  // 2️⃣ Если есть чаты, выбираем первую как активную
+  if (chatsStore.chats.length > 0) {
+    const firstRoomId = chatsStore.chats[0].id
+    await chatsStore.activeRoom(firstRoomId)
+  }
+}
+
+onMounted(() => {
+  initChats()
+})
 </script>
 
 <template>
@@ -60,8 +81,10 @@ const sendMessage = async () => {
         </button>
       </div>
       <div class="chat__chat">
-        <div v-for="el in chatsStore.messages" :key="'messages'+el.id" class="chat__message">
+        <div v-for="el in chatsStore.messages" :key="'messages'+el.id" :class="`chat__message ${el.senderId === authStore.user?.id ? 'sender' : ''}`" >
           {{ el }}
+          <br>
+          <br>
         </div>
         <input v-model="messageText" placeholder="Написать сообщение..." />
         <button @click="sendMessage">Отправить</button>
@@ -126,6 +149,13 @@ const sendMessage = async () => {
       color: #656084;
 
       align-self: start;
+    }
+
+    &__message {
+        width: 80%;
+      &.sender {
+        margin-left: auto;
+      }
     }
   }
 </style>
